@@ -391,22 +391,12 @@ generate_shell() {
     target="$SCRIPT_DIR/sh/gen_all_multi.sh"
     if [ -f "$template" ]; then
         sed \
-            -e "s|__BIN_DIR__|${BIN_DIR}|g" \
-            "$template" > "$target"
+        -e "s|__BIN_DIR__|${BIN_DIR}|g" \
+        -e "s|__MULTI_DIR__|${MULTI_DIR}|g" \
+        -e "s|__TMP_DIR__|${TMP_DIR}|g" \
+        "$template" > "$target"
         chmod +x "$target"
         info "  gen_all_multi.template.sh -> gen_all_multi.sh"
-    else
-        warn "Template not found: $template"
-    fi
-
-    # paramsmulti.template.in -> paramsmulti.in
-    template="$SCRIPT_DIR/sh/paramsmulti.template.in"
-    target="$SCRIPT_DIR/sh/paramsmulti.in"
-    if [ -f "$template" ]; then
-        sed \
-            -e "s|__TMP_DIR__|${TMP_DIR}|g" \
-            "$template" > "$target"
-        info "  paramsmulti.template.in -> paramsmulti.in"
     else
         warn "Template not found: $template"
     fi
