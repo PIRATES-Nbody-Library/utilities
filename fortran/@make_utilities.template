@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# @make_utilities template — used by setup.sh to generate @make_utilities
+
+SWIFT_DIR="__SWIFT_DIR__"
+FORTRAN="__FORTRAN__"
+FFLAGS="__FFLAGS__"
+BIN_DIR="__BIN_DIR__"
+SWIFT_INC="__SWIFT_DIR__"
+IO_INC="__SWIFT_DIR__/io"
+
+for file in *.f; do
+    # Skip template files
+    case "$file" in
+        *.template.f) continue ;;
+    esac
+    exe=$(echo "$file" | sed 's/\.f$//')
+    echo "Compiling: $exe"
+    $FORTRAN $FFLAGS -I"$SWIFT_INC" -I"$IO_INC" \
+        -o "$BIN_DIR/$exe" "$file" \
+        -L"$SWIFT_DIR" -lswift
+done

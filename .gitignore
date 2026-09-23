@@ -14,3 +14,21 @@
 # Object files and preprocessor output
 *.o
 *CPP.f
+
+# Generated Fortran source files (from templates)
+fortran/gen_all_multi.f
+fortran/gen_multi_reprise.f
+
+# Generated makefile
+fortran/@make_utilities
+fortran/@make_utilities.backup.*
+
+# Generated shell scripts and input files (from templates)
+sh/gen_all_multi.sh
+sh/paramsmulti.in
+
+# Compiled executables
+bin/
+
+# Workspace directories
+workspace/
