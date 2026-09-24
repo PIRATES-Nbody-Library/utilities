@@ -41,9 +41,9 @@ C
         INTEGER*4 IT(10*NTPMAX),MT(10*NTPMAX),IFILE
         INTEGER*4 NTP,NTPFIRST,I,J,K,ISEED,LLM,IND,NTPT,CNTFILE,NTPFILE
         LOGICAL OK,WIMPS,OKC
-        CHARACTER*80 INTPFILE,TPFILE,INPARFILE,PARFILE,OUTFILE
-        CHARACTER*80 DIRO,DIRS,GNAME,FOPENSTAT,GOFILE,MVSFILE
-        CHARACTER*80 MEXTRFILE,SIMUNAME,DIRSIM
+        CHARACTER*256 INTPFILE,TPFILE,INPARFILE,PARFILE,OUTFILE
+        CHARACTER*256 DIRO,DIRS,GNAME,FOPENSTAT,GOFILE,MVSFILE
+        CHARACTER*256 MEXTRFILE,SIMUNAME,DIRSIM
         CHARACTER*1 PR
         real*8 t0,tstop
         real*8 dtout,dtdump
@@ -756,7 +756,7 @@ c************************************************************************
 c IO_DUMP_PARAM dumps out the parameters for the integration.
 c
 c      Input:
-c       dparfile      ==>  Name of file to write to (character*80)
+c       dparfile      ==>  Name of file to write to (character*256)
 c            t0       ==> Initial time (real scalar)
 c            tstop    ==> final time (real scalar)
 c            dt       ==> time step  (real scalar)
@@ -777,7 +777,7 @@ c       lclose        ==> .true. --> discard particle if it gets
 c                                    too close to a planet. Read in that
 c                                    distance in io_init_pl
 c                                      (logical*2 scalar)
-c       outfile       ==>  Name of binary output file (character*80)
+c       outfile       ==>  Name of binary output file (character*256)
 
 c
 c Remarks:
