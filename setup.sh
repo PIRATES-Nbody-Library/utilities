@@ -334,9 +334,8 @@ do_clean() {
         # Remove generated makefile
         rm -f "$SCRIPT_DIR/fortran/@make_utilities"
 
-        # Remove generated shell scripts and input files
+        # Remove generated shell script
         rm -f "$SCRIPT_DIR/sh/gen_all_multi.sh"
-        rm -f "$SCRIPT_DIR/sh/paramsmulti.in"
 
         # Remove executables
         if [ -d "$SCRIPT_DIR/bin" ]; then

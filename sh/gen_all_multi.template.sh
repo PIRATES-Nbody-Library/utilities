@@ -1,7 +1,7 @@
 #!/bin/sh
 # Generated from gen_all_multi.template.sh by setup.sh
 
-# ---- Simulation name ----
+# --- Set simulation name (set in paramsmulti and handed to gen_all_multi) ---
 SIMU_NAME="jupiter"
 
 # -----------------------------------------------
@@ -9,27 +9,42 @@ SIMU_NAME="jupiter"
 MULTI_DIR="__MULTI_DIR__"
 BIN_DIR="__BIN_DIR__"
 TMP_DIR="__TMP_DIR__"
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SIMU_DIR="${MULTI_DIR}/simu_${SIMU_NAME}"
+
+# --- Simulation parameters (written to paramsmulti.in) ---
+T0="0.0d0"
+TSTOP="1.0e2"
+DT="0.05"
+DTOUT="1.0e1"
+DTDUMP="1.0e1"
+LFLAGS="F T F F T F"
+RMIN="0.005"
+RMAX="1000."
+RMAXU="-1."
+QMIN="-1."
+LCLOSE="F"
+FOPENSTAT="new"
+# ============================================================
 
 # Create simulation directory.
+SIMU_DIR="${MULTI_DIR}/simu_${SIMU_NAME}"
 mkdir -p "$SIMU_DIR"
 
-# Generate paramsmulti.in from template and write into simulation directory.
-PARAMS_TEMPLATE="${SCRIPT_DIR}/paramsmulti.template.in"
-PARAMS_OUT="${SIMU_DIR}/paramsmulti.in"
-if [ ! -f "$PARAMS_TEMPLATE" ]; then
-    echo "ERROR: Template not found: $PARAMS_TEMPLATE" >&2
-    exit 1
-fi
-sed -e "s|TMPDIR|${TMP_DIR}|g" \
-    -e "s|SIMUNAME|${SIMU_NAME}|g" \
-    "$PARAMS_TEMPLATE" > "$PARAMS_OUT"
+# Generate paramsmulti.in directly in simulation directory.
+cat > "${SIMU_DIR}/paramsmulti.in" <<PARAMS
+${T0} ${TSTOP} ${DT}
+${DTOUT} ${DTDUMP}
+${LFLAGS}
+${RMIN}  ${RMAX} ${RMAXU} ${QMIN} ${LCLOSE}
+${TMP_DIR}
+run_${SIMU_NAME}
+bin_${SIMU_NAME}
+${FOPENSTAT}
+PARAMS
 
 # Move into simulation directory to run from there.
 cd "$SIMU_DIR" || exit 1
 
-# ---- Simulation parameters ----
+# --- Simulation parameters (directly piped to gen_all_multi) ---
 ${BIN_DIR}/gen_all_multi <<!
 1   !   AU & Years
 0   !   Invariable plane

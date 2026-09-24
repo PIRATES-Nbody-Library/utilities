@@ -1,8 +1,0 @@
-0.0d0 1.0e2 0.05
-1.0e1 1.0e1
-F T F F T F
-0.005  1000. -1. -1. F
-TMPDIR
-run_SIMUNAME
-bin_SIMUNAME
-new
