@@ -87,7 +87,7 @@ c Setting up used writing formats
 1000    FORMAT(I6,6(1X,F7.3))
 2000    FORMAT((a),'_',I2.2,'.in')
 3000    format(100(a1,1x))
-4000    FORMAT((a),'_',I2.2)
+4000    FORMAT((a),'/',(a),'_',I2.2)
 5000    FORMAT('mvs_',I2.2,'.in')
 6000    FORMAT('go_rmvs3_multirun_',I2.2,'.sh')
 2200    FORMAT((a),'/${simname}_',I2.2,'/',(a),'_',I2.2,'.in')
@@ -376,7 +376,7 @@ c
                 CALL IO_DUMP_TP(TPFILE,NTPT,XHT,YHT,ZHT,
      &              VXHT,VYHT,VZHT,ISTAT,RSTAT)
                 WRITE(PARFILE,2000)INPARFILE(1:IPAR-1),CNTFILE
-                WRITE(DIRO,4000)TRIM(GNAME),CNTFILE
+                WRITE(DIRO,4000)TRIM(GNAME),TRIM(GNAME),CNTFILE
                 CALL io_dump_param_multirun(parfile,t0,tstop,dt,
      &           dtout,dtdump,iflgchk,rmin,rmax,rmaxu,qmin,
      &           lclose,dirs,diro,outfile,fopenstat)
