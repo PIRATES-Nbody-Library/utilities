@@ -89,7 +89,7 @@ c Setting up used writing formats
 3000    format(100(a1,1x))
 4000    FORMAT((a),'_',I2.2)
 5000    FORMAT('mvs_',I2.2,'.in')
-6000    FORMAT('go_rmvs3_',I2.2,'.sh')
+6000    FORMAT('go_rmvs3_multirun_',I2.2,'.sh')
 2200    FORMAT((a),'/${simname}_',I2.2,'/',(a),'_',I2.2,'.in')
 2001    FORMAT((a),'/',(a),'_',I2.2,'.in')
 2201    FORMAT(I2)
@@ -395,7 +395,7 @@ c
                 WRITE(31,'(a)')'#!/bin/bash'
                 WRITE(31,'(a)')' '
                 WRITE(31,'(a)')'__SWIFT_DIR__/main'
-     &          //'/swift_rmvs3 < __MULTI_DIR__/'
+     &          //'/swift_rmvs3_multirun < __MULTI_DIR__/'
      &          //TRIM(SIMUNAME)//'/'//TRIM(MVSFILE)
                 CLOSE(31)
                 CALL SYSTEM('chmod ogu+x '//TRIM(GOFILE))
