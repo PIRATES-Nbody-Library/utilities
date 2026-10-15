@@ -5,7 +5,7 @@ C-------------------------------------------------------------------------
 C
         PROGRAM GEN_ALL_MULTI
 
-        include 'swift.inc'
+        include 'swift.inc' ! defines implicit none
 
         REAL*8, PARAMETER :: SMASSYR = TWOPI*TWOPI,
      &          DR = 1.7453292519943294d-2,      ! 180/pi
