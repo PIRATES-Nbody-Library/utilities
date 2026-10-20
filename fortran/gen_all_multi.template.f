@@ -835,13 +835,13 @@ c Open parameter data file for the dump
         endif
 
         if(btest(iflgchk,0).or.btest(iflgchk,1))  then
-           write(7,'(a)') dirs
-           write(7,'(a)') gname
-           write(7,'(a)') outfile
+           write(7,'(a)') trim(dirs)
+           write(7,'(a)') trim(gname)
+           write(7,'(a)') trim(outfile)
         endif
 
 
-        write(7,'(a)') fopenstat
+        write(7,'(a)') trim(fopenstat)
 
 	close(unit = 7)
 
