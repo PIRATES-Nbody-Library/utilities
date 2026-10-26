@@ -92,9 +92,9 @@ c Setting up used writing formats
 6000    FORMAT('go_rmvs3_multirun_',I2.2,'.sh')
 2200    FORMAT((a),'/${simname}_',I2.2,'/',(a),'_',I2.2,'.in')
 2001    FORMAT((a),'/',(a),'_',I2.2,'.in')
-2201    FORMAT(I2)
-2202    FORMAT('tfin="',(f10.2),'"')
-2203    FORMAT((f10.2))
+2201    FORMAT(I0)
+2202    FORMAT('tfin="',F0.2,'"')
+2203    FORMAT(F0.2)
 
 c     Opening file to write instructions for extraction
 
