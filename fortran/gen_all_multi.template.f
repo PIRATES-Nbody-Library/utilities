@@ -84,13 +84,10 @@ C
 
 c Setting up used writing formats
 
-1000    FORMAT(I6,6(1X,F7.3))
 2000    FORMAT((a),'_',I2.2,'.in')
-3000    format(100(a1,1x))
 4000    FORMAT((a),'/',(a),'_',I2.2)
 5000    FORMAT('mvs_',I2.2,'.in')
 6000    FORMAT('go_rmvs3_multirun_',I2.2,'.sh')
-2200    FORMAT((a),'/${simname}_',I2.2,'/',(a),'_',I2.2,'.in')
 2001    FORMAT((a),'/',(a),'_',I2.2,'.in')
 2201    FORMAT(I0)
 2202    FORMAT('tfin="',F0.2,'"')
