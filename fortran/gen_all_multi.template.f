@@ -252,7 +252,7 @@ c        print*,seed
 
         WRITE(51,'(a)')'simname="'//TRIM(GNAME)//'"'
         WRITE(PARFILE,2202)SNGL(TSTOP)
-        WRITE(51,'(a)')PARFILE
+        WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(51,'(a)')'__BIN_DIR__/mbodies_multi <<!'
 
         IPAR = INDEX(INPARFILE,'.')
@@ -422,7 +422,7 @@ c
         WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(PARFILE,2203)SNGL(0.1d0*TSTOP)
         WRITE(51,'(a)')'${tfin}'
-        WRITE(51,'(a)')PARFILE
+        WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(51,'(a)')TRIM(DIRSIM)//'/'//TRIM(INPLFILE)
         WRITE(51,'(a)')TRIM(DIRSIM)//'/mextract.dat'
         DO I=1,CNTFILE
@@ -443,7 +443,7 @@ c
         WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(PARFILE,2203)SNGL(0.1d0*TSTOP)
         WRITE(51,'(a)')'${tfin}'
-        WRITE(51,'(a)')PARFILE
+        WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(51,'(a)')TRIM(DIRSIM)//'/'//TRIM(INPLFILE)
         DO I=1,CNTFILE
           WRITE(TPFILE,2001)TRIM(DIRSIM),INTPFILE(1:IPOINT-1),I
