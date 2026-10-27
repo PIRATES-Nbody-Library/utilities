@@ -48,9 +48,8 @@ C
 	WRITE(*,*) 'Enter name of parameter data file : '
 	READ(*,'(a)') inparfile
         call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
-     &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,outfile,diro,dirs,
-     &         gname,fopenstat)
-
+     &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro,dirs,
+     &         gname,outfile,fopenstat)
         WRITE(*,*) 'Enter final time (estimated) :'
         READ(*,*)TSTOP
         NT=NINT(TSTOP/DTOUT)

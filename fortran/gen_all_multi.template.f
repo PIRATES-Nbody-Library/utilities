@@ -238,8 +238,8 @@ c        print*,seed
         READ(*,'(a)')INPARFILE
         print*,inparfile
         call io_init_param_multirun(inparfile,t0,tstop,dtmin,dtout,dtdump,
-     &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,outfile,diro,dirs,
-     &         gname,fopenstat)
+     &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro,dirs,
+     &         gname,outfile,fopenstat)
         DO I=2,NBOD
           DTBOD(I) = DTMIN*2.d0*PI*SQRT(ABOD(I)**3/(MASS(I)+MASS(1)))
           DTBOD(I) = DTBOD(I)*(1.d0-EBOD(I))**1.5d0/SQRT(1.d0+EBOD(I))
