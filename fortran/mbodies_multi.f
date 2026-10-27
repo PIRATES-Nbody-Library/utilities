@@ -62,7 +62,7 @@ C
         DO I=1,NBSIMU
           WRITE(*,*)'Enter name of parameter data file : ',I
           READ(*,'(a)')inparfile
-          call io_init_param(inparfile,t0,tstop,dt,dtout,dtdump,
+          call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
      &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro(i),dirs,
      &         gname(i),outfile(i),fopenstat)
         END DO

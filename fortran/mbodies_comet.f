@@ -70,13 +70,9 @@ C
         print*,qmax
         WRITE(*,*)'Enter name of parameter data file : '
         READ(*,'(a)') inparfile
-          call io_init_param(inparfile,t0,tstop,dt,dtout,dtdump,
+          call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
      &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro,dirs,
      &         gname,outfile,fopenstat)
-c        call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
-c     &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,outfile,diro,dirs,
-c     &         gname,fopenstat)
-
 
         WRITE(*,*) 'Enter beginning time (estimated) :'
         READ(*,*)TDEB
