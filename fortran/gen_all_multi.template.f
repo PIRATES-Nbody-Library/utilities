@@ -448,12 +448,12 @@ c
         END DO
         WRITE(51,'(a)')'!'
         WRITE(51,'(a)')'__BIN_DIR__/followbodies <<!'
+        WRITE(51,'(a)')TRIM(DIRSIM)//'/extraction/followbodies.dat'
         I=1
         WRITE(PARFILE,2001)TRIM(DIRSIM),INPARFILE(1:IPAR-1),I
         WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(51,'(a)')'${tfin}'
         WRITE(51,'(a)')'1'
-        WRITE(51,'(a)')TRIM(DIRSIM)//'/followbodies.dat'
         WRITE(51,'(a)')TRIM(DIRSIM)//'/'//TRIM(INPLFILE)
         WRITE(51,'(a)')'!'
         WRITE(51,'(a)')'exit'

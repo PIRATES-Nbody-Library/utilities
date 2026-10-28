@@ -39,9 +39,14 @@ C
         REAL*8 ELH,ELK,ELP,ELQ,Z0,ALPHEVAP,REVAP,RADMIN,ORMOY,RHO
 
 	CHARACTER*256 OUTFILE,INPARFILE,INPLFILE,INTPFILE,FOPENSTAT,
-     &               DIRO,DIRS,GNAME,DEV
+     &               DIRO,DIRS,GNAME,FOLLOWBODIES_OUTPUT
 
         COLL=.FALSE.
+
+        WRITE(*,*) 'Enter name of outfile:'
+        READ(*,'(A)') FOLLOWBODIES_OUTPUT
+	      PRINT*,FOLLOWBODIES_OUTPUT
+
 	WRITE(*,*) 'Enter name of parameter data file : '
 	READ(*,'(a)') inparfile
         call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
@@ -273,9 +278,7 @@ C
           DATA4(1:NB(I),7,NBOD+I)=NB(I)
         END DO
 
-        DEV = TRIM(DIRO)//'/followbodies.dat'
-
-        OPEN(18,FILE=DEV,STATUS='UNKNOWN')
+        OPEN(18,FILE=FOLLOWBODIES_OUTPUT,STATUS='UNKNOWN')
         WRITE(18,*)NBMAX,7,NBOD+NPFOL
         WRITE(18,*)DATA4
         CLOSE(18)
