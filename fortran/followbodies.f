@@ -67,17 +67,6 @@ C
 
         NPFOL = 0
 	WRITE(*,*) ' '
-c	WRITE(*,*) 'Enter number of particles to follow : '
-c        READ(*,*)NPFOL
-c        IF (NPFOL.GT.NFOLMAX) THEN
-c          WRITE(*,*)'Maximum number of particles allowed = ',NFOLMAX
-c          STOP
-c        END IF
-c        IF (NPFOL.GT.0) THEN
-c  	  WRITE(*,*) 'Enter ID''s of particles to follow : '
-c          READ(*,*)IDFOL(1:NPFOL)
-c        END IF
-
 
         IF (BTEST(IFLGCHK,0)) THEN
            WRITE(*,*) ' Reading an INTEGER*2 binary file '
@@ -151,7 +140,6 @@ c        END IF
             END DO
             IF (OK) THEN
               IF (NBC(ID).EQ.0) THEN
-c                print*,jfol,nb(jfol),t
                 NB(JFOL)=NB(JFOL)+1
                 TT(NB(JFOL),JFOL)=SNGL(T)
                 TA(NB(JFOL),JFOL)=SNGL(A)
@@ -192,9 +180,6 @@ c                print*,jfol,nb(jfol),t
             IRMOY = 0.0D0
             ORMOY = 0.0D0
             DO I = 1,NTP
-C              IRMOY = IRMOY+ACOS(
-C     &          SIN(TTINC(I))*SIN(IMOY)*COS(TTCAPOM(I)-OMOY)
-C     &                     +COS(TTINC(I))*COS(IMOY))
               KX = SIN(TTINC(I))*SIN(TTCAPOM(I))
               KY = -SIN(TTINC(I))*COS(TTCAPOM(I))
               KZ = COS(TTINC(I))
@@ -205,17 +190,8 @@ C     &                     +COS(TTINC(I))*COS(IMOY))
               KZR = KX*KXMOY+KY*KYMOY+KZ*KZMOY
               IRMOY = IRMOY+ACOS(KZR)
               ORMOY = ORMOY+ATAN2(KXR,KYR)
-c              KXR = (TTX(I)+TTX(I)*KZMOY-TTX(I)*KXMOY*KXMOY
-c     &              -KXMOY*KYMOY*TTY(I)-KXMOY*TTZ(I)
-c     &              -KXMOY*TTZ(I)*KZMOY)/(1.0d0+KZMOY)
-c              KYR = -(KXMOY*KYMOY*TTX(I)+TTY(I)+TTY(I)*KZMOY
-c     &              -TTY(I)*KYMOY*KYMOY-KYMOY*TTZ(I)
-c     &              -KYMOY*TTZ(I)*KZMOY)/(1.0d0+KZMOY)
-c              KZR = TTX(I)*KXMOY+TTY(I)*KYMOY+TTZ(I)*KZMOY
-c              TTR(I) = SQRT(KXR*KXR+KYR*KYR)
               TTX(I) = ACOS(KZR)
               TTY(I) = ATAN2(KXR,KYR)
-c              TTZ(I) = KZR/TTR(I)
             END DO
             IRMOY = IRMOY/NTP
             ORMOY = ORMOY/NTP
@@ -254,39 +230,6 @@ c              TTZ(I) = KZR/TTR(I)
             END DO
             RHO = RHO/NTP
 
-c            PPP(1)=4.0d0
-c            ppp(2)=1d-9
-c            ppp(3)=1d-9
-c            OK = .FALSE.
-c            do i=-10,60
-c              CALL SOLXY(NTP,TTA,TTY,TTX,0.2*i,PPP(2),PPP(3),
-c     &                                CHI2,DQA,DQAA)
-c              print*,0.2*i,chi2
-c            end do
-c            print*,'---'
-c            CALL QQMIN(NTP,TTA,TTY,TTX,PPP(1),PPP(2),PPP(3),CHI2)
-
-
-c            I=0
-c
-c            DO WHILE(.NOT.OK)
-c              CALL SOLXY(NTP,TTA,TTY,TTX,PPP(1),PPP(2),PPP(3),
-c     &                                    CHI2,DQA,DQAA)
-c              I=I+1
-c              CALL SOLXY(NTP,TTA,TTY,TTX,PPP(1)+1d-6,PPP(2),PPP(3),
-c     &                                    kxr,kyr,kzr)
-c              OK = (((ABS(DQA/DQAA/PPP(1)).LT.1d-9)
-c     &                .and.(abs(dqa).lt.1d-4)).OR.(i.gt.100))
-c              print*,'chi2',sngl(CHI2),'dqa',sngl(dqa),
-c     &              'alpha',sngl(ppp(1)),sngl((kxr-chi2)/1d-6)
-cc     & sngl(sqrt(PPP(2)*PPP(2)+PPP(3)*PPP(3)))
-c              IF (DQA.NE.0.0d0) PPP(1)=PPP(1)-DQA/DQAA
-c              IF (PPP(1).lt.-1.) PPP(1)=-1.
-c            end do
-c            print*,sngl(ppp(1)),
-c     &       sngl(sqrt(PPP(2)*PPP(2)+PPP(3)*PPP(3))*
-c     &                        (250.0d0**(PPP(1))))
-C
             TA(NB(0),0)=SNGL(RHO)
             TE(NB(0),0)=SNGL(EMOY)
             TINC(NB(0),0)=SNGL(IMOY*DR)
@@ -330,12 +273,8 @@ C
           DATA4(1:NB(I),7,NBOD+I)=NB(I)
         END DO
 
-c        print*,DATA4(1:NB(0),7,NBOD)
         DEV = TRIM(DIRO)//'/followbodies.dat'
 
-c        CALL IMWRITE(DEV,DATA4,NBMAX,DBLE(NBOD),0.,0.,7,
-c     &                    0.,0.,0.,NBOD,0.,0.,0.,
-c     &                    SNGL(-10000.),SNGL(0.001),0.,0.,0.,ERROR)
         OPEN(18,FILE=DEV,STATUS='UNKNOWN')
         WRITE(18,*)NBMAX,7,NBOD+NPFOL
         WRITE(18,*)DATA4
@@ -351,8 +290,6 @@ C--------------------------------------------------------------------
 C               Keplerian orbit stuff
 C--------------------------------------------------------------------
 C
-c       SUBROUTINE KEPLER_STUFF(GM,A,E,INC,CAPOM,OMEGA,CAPM,
-c    &                   R,CX,CY,CZ,VX,VY,VZ,EX,EY,EZ,EPX,EPY,EPZ)
         SUBROUTINE KEPLER_STUFF(A,E,INC,CAPOM,OMEGA,CAPM,CX,CY,CZ)
 
         include 'swift.inc'
@@ -387,14 +324,10 @@ c    &                   R,CX,CY,CZ,VX,VY,VZ,EX,EY,EZ,EPX,EPY,EPZ)
         R = A*(1.-E*COS(U))
         RX = A*(COS(U)-E)
         RY = A*SQRT(1.-E*E)*SIN(U)
-c        VRX = -SQRT(GM/A)*A/R*SIN(U)
-c        VRY = SQRT(GM/A)*A/R*COS(U)
         CX = EX*RX+EPX*RY
         CY = EY*RX+EPY*RY
         CZ = EZ*RX+EPZ*RY
-c        VX = EX*VRX+EPX*VRY
-c        VY = EY*VRX+EPY*VRY
-c        VZ = EZ*VRX+EPZ*VRY
+
         END subroutine
 
 C
@@ -429,7 +362,6 @@ C
         SLNA2SI2=0.
         SLNA2SI2CO2=0.
         SLNA2SI2COSO=0.
-c        EA=EXP(ALPHA)
         EA = ALPHA
         DO I=1,NDAT
           RA=A(I)**EA
@@ -499,9 +431,7 @@ c        EA=EXP(ALPHA)
      &       -Y0*Y0*CO*CO-X0*X0*SO*SO+2.*X0*Y0*CO*SO)
      &       +RA*LA*LA*CI*SI*(-Y0*CO+X0*SO)
         END DO
-c        print*,dqaa,dqax*dx0,dqay*dy0
-c        DQAA=(DQAA+DQAX*DX0+DQAY*DY0)*EA*EA+DQA*EA
-c        DQA=DQA*EA
+
         DQAA=(DQAA+DQAX*DX0+DQAY*DY0)
         END subroutine
 
