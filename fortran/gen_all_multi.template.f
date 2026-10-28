@@ -421,7 +421,7 @@ c
         WRITE(51,'(a)')'${tfin}'
         WRITE(51,'(a)')TRIM(PARFILE)
         WRITE(51,'(a)')TRIM(DIRSIM)//'/'//TRIM(INPLFILE)
-        WRITE(51,'(a)')TRIM(DIRSIM)//'/mextract.dat'
+        WRITE(51,'(a)')TRIM(DIRSIM)//'/extraction/mextract.dat'
         DO I=1,CNTFILE
           WRITE(TPFILE,2001)TRIM(DIRSIM),INTPFILE(1:IPOINT-1),I
           WRITE(51,'(a)')TRIM(TPFILE)
@@ -429,7 +429,7 @@ c
         WRITE(51,'(a)')'!'
         WRITE(51,'(a)')'__BIN_DIR__'
      &   //'/mbodies_comet_multi << !'
-        WRITE(51,'(a)')TRIM(DIRSIM)//'cometfile.dat'
+        WRITE(51,'(a)')TRIM(DIRSIM)//'/'//'extraction/cometfile.dat'
         WRITE(51,2203)peri_comet
         WRITE(51,2201)CNTFILE
         DO I=1,CNTFILE

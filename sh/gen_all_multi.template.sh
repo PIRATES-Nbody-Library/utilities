@@ -45,6 +45,7 @@ LAUNCH_TEMPLATE="${SCRIPT_DIR}/launch_all_simulations.template.sh"
 # =============================================================================
 SIMU_DIR="${MULTI_DIR}/simu_${SIMU_NAME}"
 mkdir -p "$SIMU_DIR"
+mkdir -p "${SIMU_DIR}/extraction"
 
 # =============================================================================
 # Parse arguments
