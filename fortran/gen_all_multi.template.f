@@ -429,7 +429,7 @@ c
         WRITE(51,'(a)')'!'
         WRITE(51,'(a)')'__BIN_DIR__'
      &   //'/mbodies_comet_multi << !'
-        WRITE(51,'(a)')'cometfile.dat'
+        WRITE(51,'(a)')TRIM(DIRSIM)//'cometfile.dat'
         WRITE(51,2203)peri_comet
         WRITE(51,2201)CNTFILE
         DO I=1,CNTFILE
