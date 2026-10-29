@@ -9,8 +9,9 @@ C
 
         REAL*4, DIMENSION(:,:,:), ALLOCATABLE :: DATA4
         INTEGER*4, PARAMETER :: NFOLMAX = 20
-        REAL*4, DIMENSION(500000,-NPLMAX:NFOLMAX) :: TT,TA,TINC,TE,
-     &                                         TCAPOM,TOMEGA,TCAPM
+        REAL*4, DIMENSION(:,:), ALLOCATABLE :: TT,TA,TINC,TE,
+     &                                       TCAPOM,TOMEGA,TCAPM
+        INTEGER*4 :: NTUSED
 
         INTEGER*4 NB(-NPLMAX:NFOLMAX),NBMAX,NT
         INTEGER*4 NBC(-NPLMAX:NFOLMAX),NCG,J,JFOL
@@ -59,6 +60,7 @@ C
         print*,nt
         WRITE(*,*) 'One data over :'
         READ(*,*)NCG
+
 	WRITE(*,*) ' '
 	WRITE(*,*) 'Enter name of planet data file : '
 	READ(*,'(A)') INPLFILE
@@ -72,6 +74,28 @@ C
 
         NPFOL = 0
 	WRITE(*,*) ' '
+
+C---------------------------------------------------------------------
+C     Allocate orbital element time-series arrays.
+C     NTUSED = NT/NCG + 1: actual stored time steps per body (NT output
+C     steps downsampled by NCG, plus 1 for integer rounding guard).
+C     Second dimension spans -NBOD:NPFOL, sized to the actual number
+C     of planets including Sun (NBOD, negative indices), swarm average
+C     (index 0), and individually followed test particles (NPFOL,
+C     positive indices).
+C     Arrays are:
+C     TT=time, TA=semi-major axis, TE=eccentricity, TINC=inclination,
+C     TCAPOM=longitude of ascending node, TOMEGA=argument of perihelion,
+C     TCAPM=mean anomaly.
+C---------------------------------------------------------------------
+        NTUSED = NT / NCG + 1
+        ALLOCATE(TT(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TA(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TE(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TINC(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TCAPOM(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TOMEGA(NTUSED, -NBOD:NPFOL), source=0.0)
+        ALLOCATE(TCAPM(NTUSED, -NBOD:NPFOL), source=0.0)
 
         IF (BTEST(IFLGCHK,0)) THEN
            WRITE(*,*) ' Reading an INTEGER*2 binary file '
@@ -282,8 +306,15 @@ C
         WRITE(18,*)NBMAX,7,NBOD+NPFOL
         WRITE(18,*)DATA4
         CLOSE(18)
-        DEALLOCATE(DATA4)
 
+        DEALLOCATE(TT)
+        DEALLOCATE(TA)
+        DEALLOCATE(TE)
+        DEALLOCATE(TINC)
+        DEALLOCATE(TCAPOM)
+        DEALLOCATE(TOMEGA)
+        DEALLOCATE(TCAPM)
+        DEALLOCATE(DATA4)
 
         CONTAINS
 
