@@ -65,7 +65,7 @@ C
 
         write(*,*) 'Enter name of outfile:'
         read(*,'(a)') cometfile
-	print*,cometfile
+        print*,cometfile
         read(*,*)qmax
         print*,qmax
         WRITE(*,*)'Enter name of parameter data file : '
@@ -376,7 +376,7 @@ c Here we will store information on particles which periastron is inferior to th
         CLOSE(IU)
         print*,siz,isnaptot
 
-	ncom=icom
+        ncom=icom
 
 
         OPEN(18,FILE=cometfile,status='unknown')
@@ -539,4 +539,4 @@ c        WRITE(*,*) ' C1,C2,C3 ',C1,C2,C3
         END subroutine
 c-------------------------------------------------------------------------
 
-	end program mbodies_comet
+        end program mbodies_comet

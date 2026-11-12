@@ -14,36 +14,36 @@ C
 
         INTEGER*4 NB(-NPLMAX:NFOLMAX),NBMAX,NT
         INTEGER*4 NBC(-NPLMAX:NFOLMAX),NCG,J,JFOL
-	REAL*8 XJ(NPLMAX),YJ(NPLMAX),ZJ(NPLMAX),MASS(NPLMAX)
-	REAL*8 VXJ(NPLMAX),VYJ(NPLMAX),VZJ(NPLMAX),TTINC(NTPMAX)
+        REAL*8 XJ(NPLMAX),YJ(NPLMAX),ZJ(NPLMAX),MASS(NPLMAX)
+        REAL*8 VXJ(NPLMAX),VYJ(NPLMAX),VZJ(NPLMAX),TTINC(NTPMAX)
         REAL*8 TTX(NTPMAX),TTY(NTPMAX),TTZ(NTPMAX),TTH(NTPMAX)
         REAL*8 TTR(NTPMAX)
-	INTEGER*4 ISTAT(NTPMAX,NSTAT),NPFOL,IDFOL(NFOLMAX)
+        INTEGER*4 ISTAT(NTPMAX,NSTAT),NPFOL,IDFOL(NFOLMAX)
         REAL*8 RSTAT(NTPMAX,NSTATR),RR,TTA(NTPMAX),TTE(NTPMAX)
-	REAL*8 MOYM,XX,YY,ZZ,XP,DTT,TEV,EH,TEVII,CEPS,SEPS,EPS
-	INTEGER*4 NBOD,NTP,IERR,IFOL,ISTEP
-	INTEGER*4 IFLGCHK,IU,NLEFT,I,ID,OLOC(NPLMAX,NPLMAX)
+        REAL*8 MOYM,XX,YY,ZZ,XP,DTT,TEV,EH,TEVII,CEPS,SEPS,EPS
+        INTEGER*4 NBOD,NTP,IERR,IFOL,ISTEP
+        INTEGER*4 IFLGCHK,IU,NLEFT,I,ID,OLOC(NPLMAX,NPLMAX)
         INTEGER*4 IO_READ_HDR,IO_READ_LINE,IREAD
         INTEGER*4 IO_READ_HDR_R,IO_READ_LINE_R,II
 
-	REAL*8 T0,TSTOP,DT,DTOUT,DTDUMP,DR,TTCAPOM(NTPMAX),IMOY
-	REAL*8 T,TMAX,EMAX(NTPMAX),VARPI,KR,KT,RCOLL,AMOY,EMOY
+        REAL*8 T0,TSTOP,DT,DTOUT,DTDUMP,DR,TTCAPOM(NTPMAX),IMOY
+        REAL*8 T,TMAX,EMAX(NTPMAX),VARPI,KR,KT,RCOLL,AMOY,EMOY
         REAL*8 MAT(NPLMAX,NPLMAX),UMAT(NPLMAX,NPLMAX),OR2,IR2
         REAL*8 ETA(NPLMAX),MU(NPLMAX),IRMOY,OMOY,KXMOY,KYMOY,KZMOY
         REAL*8 PPP(3),SIGP(3),CHI2,DQA,DQAA,RHA,SIGA,check
 
-	REAL*8 RMIN,RMAX,RMAXU,QMIN,RPLSQ(NPLMAX),KX,KY,KZ,KXR,KYR
+        REAL*8 RMIN,RMAX,RMAXU,QMIN,RPLSQ(NPLMAX),KX,KY,KZ,KXR,KYR
         LOGICAL ERROR,WIMPS,EVAP,COLL
         LOGICAL*2 LCLOSE,OK
         REAL*8 A,E,INC,CAPOM,OMEGA,CAPM,J2RP2,J4RP4,KZR,SIGI,SIGO
         REAL*8 ELH,ELK,ELP,ELQ,Z0,ALPHEVAP,REVAP,RADMIN,ORMOY,RHO
 
-	CHARACTER*256 OUTFILE,INPARFILE,INPLFILE,INTPFILE,FOPENSTAT,
+        CHARACTER*256 OUTFILE,INPARFILE,INPLFILE,INTPFILE,FOPENSTAT,
      &               DIRO,DIRS,GNAME,DEV
 
         COLL=.FALSE.
-	WRITE(*,*) 'Enter name of parameter data file : '
-	READ(*,'(a)') inparfile
+        WRITE(*,*) 'Enter name of parameter data file : '
+        READ(*,'(a)') inparfile
         call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
      &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro,dirs,gname,
      &         outfile,fopenstat)
@@ -54,9 +54,9 @@ C
         print*,nt
         WRITE(*,*) 'One data over :'
         READ(*,*)NCG
-	WRITE(*,*) ' '
-	WRITE(*,*) 'Enter name of planet data file : '
-	READ(*,'(A)') INPLFILE
+        WRITE(*,*) ' '
+        WRITE(*,*) 'Enter name of planet data file : '
+        READ(*,'(A)') INPLFILE
         call io_init_pl(inplfile,lclose,iflgchk,nbod,mass,xj,yj,zj,
      &     vxj,vyj,vzj,rplsq,j2rp2,j4rp4)
         IU = 20
@@ -66,8 +66,8 @@ C
         T=-1.0d0
 
         NPFOL = 0
-	WRITE(*,*) ' '
-c	WRITE(*,*) 'Enter number of particles to follow : '
+        WRITE(*,*) ' '
+c	       WRITE(*,*) 'Enter number of particles to follow : '
 c        READ(*,*)NPFOL
 c        IF (NPFOL.GT.NFOLMAX) THEN
 c          WRITE(*,*)'Maximum number of particles allowed = ',NFOLMAX
@@ -522,7 +522,7 @@ C
         IMPLICIT NONE
 
         INTEGER*4       NDAT
-	REAL*8		XTRY,YTRY,	! Point d'essai
+        REAL*8		XTRY,YTRY,	! Point d'essai
      &                  A(NDAT),OMEGA(NDAT),INC(NDAT),
      &                  D1,D2,DENO,     ! Intermediaires
      &                  DD,             ! Difference

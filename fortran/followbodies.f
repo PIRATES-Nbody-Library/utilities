@@ -15,39 +15,39 @@ C
 
         INTEGER*4 NB(-NPLMAX:NFOLMAX),NBMAX,NT
         INTEGER*4 NBC(-NPLMAX:NFOLMAX),NCG,J,JFOL
-	REAL*8 XJ(NPLMAX),YJ(NPLMAX),ZJ(NPLMAX),MASS(NPLMAX)
-	REAL*8 VXJ(NPLMAX),VYJ(NPLMAX),VZJ(NPLMAX),TTINC(NTPMAX)
+        REAL*8 XJ(NPLMAX),YJ(NPLMAX),ZJ(NPLMAX),MASS(NPLMAX)
+        REAL*8 VXJ(NPLMAX),VYJ(NPLMAX),VZJ(NPLMAX),TTINC(NTPMAX)
         REAL*8 TTX(NTPMAX),TTY(NTPMAX),TTZ(NTPMAX)
-	INTEGER*4 NPFOL,IDFOL(NFOLMAX)
+        INTEGER*4 NPFOL,IDFOL(NFOLMAX)
         REAL*8 TTA(NTPMAX),TTE(NTPMAX)
-	INTEGER*4 NBOD,NTP,IERR
-	INTEGER*4 IFLGCHK,IU,NLEFT,I,ID
+        INTEGER*4 NBOD,NTP,IERR
+        INTEGER*4 IFLGCHK,IU,NLEFT,I,ID
         INTEGER*4 IO_READ_HDR,IO_READ_LINE,IREAD
         INTEGER*4 IO_READ_HDR_R,IO_READ_LINE_R
 
-	REAL*8 T0,TSTOP,DT,DTOUT,DTDUMP,DR,TTCAPOM(NTPMAX),IMOY
-	REAL*8 T,AMOY,EMOY
+        REAL*8 T0,TSTOP,DT,DTOUT,DTDUMP,DR,TTCAPOM(NTPMAX),IMOY
+        REAL*8 T,AMOY,EMOY
         REAL*8 OR2,IR2
         REAL*8 IRMOY,OMOY,KXMOY,KYMOY,KZMOY
         REAL*8 RHA,SIGA
 
-	REAL*8 RMIN,RMAX,RMAXU,QMIN,RPLSQ(NPLMAX),KX,KY,KZ,KXR,KYR
+        REAL*8 RMIN,RMAX,RMAXU,QMIN,RPLSQ(NPLMAX),KX,KY,KZ,KXR,KYR
         LOGICAL COLL
         LOGICAL*2 LCLOSE,OK
         REAL*8 A,E,INC,CAPOM,OMEGA,CAPM,J2RP2,J4RP4,KZR,SIGI,SIGO
         REAL*8 ORMOY,RHO
 
-	CHARACTER*256 OUTFILE,INPARFILE,INPLFILE,FOPENSTAT,
+        CHARACTER*256 OUTFILE,INPARFILE,INPLFILE,FOPENSTAT,
      &               DIRO,DIRS,GNAME,FOLLOWBODIES_OUTPUT
 
         COLL=.FALSE.
 
         WRITE(*,*) 'Enter name of outfile:'
         READ(*,'(A)') FOLLOWBODIES_OUTPUT
-	      PRINT*,FOLLOWBODIES_OUTPUT
+              PRINT*,FOLLOWBODIES_OUTPUT
 
-	WRITE(*,*) 'Enter name of parameter data file : '
-	READ(*,'(a)') inparfile
+        WRITE(*,*) 'Enter name of parameter data file : '
+        READ(*,'(a)') inparfile
         call io_init_param_multirun(inparfile,t0,tstop,dt,dtout,dtdump,
      &         iflgchk,rmin,rmax,rmaxu,qmin,lclose,diro,dirs,gname,
      &         outfile,fopenstat)
@@ -59,9 +59,9 @@ C
         WRITE(*,*) 'One data over :'
         READ(*,*)NCG
 
-	WRITE(*,*) ' '
-	WRITE(*,*) 'Enter name of planet data file : '
-	READ(*,'(A)') INPLFILE
+        WRITE(*,*) ' '
+        WRITE(*,*) 'Enter name of planet data file : '
+        READ(*,'(A)') INPLFILE
         call io_init_pl(inplfile,lclose,iflgchk,nbod,mass,xj,yj,zj,
      &     vxj,vyj,vzj,rplsq,j2rp2,j4rp4)
         IU = 20
@@ -71,7 +71,7 @@ C
         T=-1.0d0
 
         NPFOL = 0
-	WRITE(*,*) ' '
+        WRITE(*,*) ' '
 
 C---------------------------------------------------------------------
 C     Allocate orbital element time-series arrays.

@@ -27,7 +27,7 @@ C
      &         VXBO(NPLMAX),VYBO(NPLMAX),VZBO(NPLMAX),
      &         MSYS,FACHILL,R2HILL(NPLMAX),DTBOD(NPLMAX)
 
-	INTEGER*4	NDATA          ! Taille du tableau de donnees.
+        INTEGER*4	NDATA          ! Taille du tableau de donnees.
         REAL*8 XHT(NTPMAX),YHT(NTPMAX),ZHT(NTPMAX),
      &         VXHT(NTPMAX),VYHT(NTPMAX),VZHT(NTPMAX),
      &         BETAHT(NTPMAX),BETAMIN,BETAMAX,GME,
@@ -203,21 +203,21 @@ C...  Calc the radii
         CALL COORD_B2H(NBOD,MASS,XB,YB,ZB,VXB,VYB,VZB,
      &      XH,YH,ZH,VXH,VYH,VZH)
 
-	WRITE(*,*) ' '
-	WRITE(*,*) 'Enter name of planet data file : '
-	READ(*,'(a)')INPLFILE
+        WRITE(*,*) ' '
+        WRITE(*,*) 'Enter name of planet data file : '
+        READ(*,'(a)')INPLFILE
         print*,inplfile
         IFLGCHK = 0
         J2RP2 = 0.0D0
         J4RP4 = 0.0D0
-	CALL IO_DUMP_PL(INPLFILE,NBOD,MASS,XH,YH,ZH,
+        CALL IO_DUMP_PL(INPLFILE,NBOD,MASS,XH,YH,ZH,
      &       VXH,VYH,VZH,LCLOSE,IFLGCHK,RPLSQ,J2RP2,J4RP4)
 
         WIMPMFP=0.0d0
 
         WRITE(*,*) ' '
-	WRITE(*,*) 'Enter periastron value : '
-	READ(*,*)peri_comet
+        WRITE(*,*) 'Enter periastron value : '
+        READ(*,*)peri_comet
         print*,peri_comet
 
 
@@ -782,20 +782,20 @@ c Authors:  Martin Duncan
 c Date:    3/2/93
 c Last revision:  5/10/94 HFL
 
-	subroutine io_dump_param_multirun(dparfile,t,tstop,dt,dtout,dtdump,
+        subroutine io_dump_param_multirun(dparfile,t,tstop,dt,dtout,dtdump,
      &           iflgchk,rmin,rmax,rmaxu,qmin,lclose,dirs,
      &           gname,outfile,fopenstat)
 
-	include 'swift.inc'
-	include 'io.inc'
+        include 'swift.inc'
+        include 'io.inc'
 
 c...   Inputs
-	real*8 t,tstop,dt
-	integer*4 iflgchk
-	real*8 dtout,dtdump
-	real*8 rmin,rmax,rmaxu,qmin
+        real*8 t,tstop,dt
+        integer*4 iflgchk
+        real*8 dtout,dtdump
+        real*8 rmin,rmax,rmaxu,qmin
         logical*2 lclose
-	character*(*) outfile,dparfile,fopenstat,dirs,gname
+        character*(*) outfile,dparfile,fopenstat,dirs,gname
 
 c...  Internals
         character*1 lflg(0:IO_NBITS-1),cclose
@@ -807,8 +807,8 @@ c...  Executable code
 c Open parameter data file for the dump
         call io_open(7,dparfile,'unknown','formatted',ierr)
 
-	write(7,*) sngl(t),tstop,dt
-	write(7,*) dtout,dtdump
+        write(7,*) sngl(t),tstop,dt
+        write(7,*) dtout,dtdump
 
         do i=0,IO_NBITS-1
            if(btest(iflgchk,i))  then
@@ -840,10 +840,10 @@ c Open parameter data file for the dump
 
         write(7,'(a)') trim(fopenstat)
 
-	close(unit = 7)
+        close(unit = 7)
 
-	return
-	end subroutine    ! io_dump_param_multirun
+        return
+        end subroutine    ! io_dump_param_multirun
 c____________________________________________________________________________
 c
 c

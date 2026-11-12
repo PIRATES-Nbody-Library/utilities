@@ -65,8 +65,8 @@ C
 
         write(*,*) 'Enter name of outfile:'
         read(*,'(a)') cometfile
-	    print*,cometfile
-	    write(*,*) 'Enter value for periastron investigated:'
+        print*,cometfile
+        write(*,*) 'Enter value for periastron investigated:'
         read(*,*)qmax
         print*,qmax
 
@@ -419,7 +419,7 @@ c print*,'Creating snapshot at T=',SNGL(T),' npts=',NBOD+NTP
         END DO
         print*,siz,isnaptot
 
-	    ncom=icom
+        ncom=icom
 
         OPEN(18,FILE=cometfile,status='unknown')
         DO I=1,ncom
